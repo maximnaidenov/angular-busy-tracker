@@ -1,7 +1,7 @@
-describe('util: busy', function() {
+describe('Module mnBusy', function() {
 
     // ng and ngMock modules are loaded by default, all others should be specified explicitly
-    beforeEach(module('busy',
+    beforeEach(module('mnBusy',
         function($provide){
             $provide.value('busyDefaults',{
                 templateUrl: 'template.html'
@@ -18,48 +18,48 @@ describe('util: busy', function() {
 
     describe('directive: busy', function() {
         var $scope,$compile,$q,$timeout,$templateCache,$provide;
-        
+
         beforeEach(inject(
             function(_$rootScope_,_$compile_,_$q_,_$timeout_,_$templateCache_) {
                 $scope = _$rootScope_;
                 $compile = _$compile_;
-                $q = _$q_;            
+                $q = _$q_;
                 $timeout = _$timeout_;
                 $templateCache = _$templateCache_;
-                
-                $templateCache.put('template.html', 
-                    '<div><div ng-if="$tracker.isBusy()">test</div></div>');   
-                $templateCache.put('paramsTemplate.html', 
-                    '<div>{{$params.message}}</div>'); 
+
+                $templateCache.put('template.html',
+                    '<div><div ng-if="$tracker.isBusy()">test</div></div>');
+                $templateCache.put('paramsTemplate.html',
+                    '<div>{{$params.message}}</div>');
         }));
-        
+
         // test attribute parsig, template loading, tracking
         // test no delay, no min duration -> should show as long as promise is active
         it('should show during promise', function() {
-        
+
             var element = $compile(
                     '<div busy-tracker="testPromise"></div>')($scope);
-            
+
             var testDeferred = $q.defer();
             $scope.testPromise = testDeferred.promise;
             $scope.$digest();
 
             //ensure the elements are added
-            expect(element.children().length).toBe(1); 
+            expect(element.children().length).toBe(1);
 
             // ensure busy indicator is shown as promise is ongoing
             expect(element.text()).toBe('test');
-            
-            testDeferred.resolve();            
+
+            testDeferred.resolve();
             $scope.$digest();
 
             //ensure busy is not shown as the promise is resolved
             expect(element.text()).toBe('');
-	});
-        
+        });
+
         // test with self-cleaning promise array
         it('should show during dynamic promise array', function() {
-        
+
             var trackPromises = function(promiseArray,newPromise){
                 promiseArray.push(
                         newPromise.then(function(){
@@ -67,10 +67,10 @@ describe('util: busy', function() {
                                 promiseArray.indexOf(newPromise),1);
                         }));
             }
-        
+
             var element = $compile(
                     '<div busy-tracker="testPromises"></div>')($scope);
-            
+
             var testDeferred1 = $q.defer();
             var testDeferred2 = $q.defer();
             $scope.testPromises = [];
@@ -79,30 +79,30 @@ describe('util: busy', function() {
             $scope.$digest();
 
             //ensure the elements are added
-            expect(element.children().length).toBe(1); 
+            expect(element.children().length).toBe(1);
 
             // ensure busy indicator is shown as both promises are ongoing
             expect(element.text()).toBe('test');
-            
+
             // resolve and remove the first promise
-            testDeferred1.resolve();            
+            testDeferred1.resolve();
             $scope.$digest();
 
             // ensure busy indicator is still shown as second promises is still ongoing
             expect(element.text()).toBe('test');
-            
+
             // resolve and remove the second promise
-            testDeferred2.resolve();            
+            testDeferred2.resolve();
             $scope.$digest();
-            
+
             //ensure busy is not shown as all promises are resolved
             expect(element.text()).toBe('');
-	});
-       
-        // test config parsing and extending
-        // test delay and duration handling 
-	it('should handle delay and min duration', function() {
-                
+	       });
+
+         // test config parsing and extending
+         // test delay and duration handling
+	       it('should handle delay and min duration', function() {
+
             var element = $compile(
                 '<div busy-tracker="testPromise" \n\
                     busy-config="DelayDuration"></div>')($scope);
@@ -112,45 +112,45 @@ describe('util: busy', function() {
             $scope.$digest();
 
             //ensure the elements are added
-            expect(element.children().length).toBe(1); 
+            expect(element.children().length).toBe(1);
 
             $timeout.flush(99);
 
             //ensure busy is not shown as delay is pending
             expect(element.text()).toBe('');
-            
+
             $timeout.flush(2);
-            
+
             // ensure busy indicator is shown as delay is over
             expect(element.text()).toBe('test');
-            
-            testDeferred.resolve();            
+
+            testDeferred.resolve();
             $scope.$digest();
-            
+
             $timeout.flush(98);
-            
+
             // ensure busy indicator is shown as min duration is pending
             expect(element.text()).toBe('test');
-            
+
             $timeout.flush(2);
-            
+
             //ensure busy is not shown as min duration is over
             expect(element.text()).toBe('');
-	});
-        
+	      });
+
         // test params parsing and interpolation
         it('should handle params', function() {
-                
+
             var element = $compile(
                 '<div busy-tracker="testPromise" \n\
                     busy-config="Params" \n\
                     busy-param-message="test_message"></div>')($scope);
-            
+
             $scope.$digest();
-            
+
             expect(element.text()).toBe('test_message');
         });
-        
+
         // test busy-ready handling
         it('should handle busy-ready', function() {
 
@@ -158,16 +158,15 @@ describe('util: busy', function() {
             var element = $compile(
                 '<div busy-tracker="testPromise" \n\
                     busy-ready="test.key=\'new_value\'"></div>')($scope);
-                        
+
             var testDeferred = $q.defer();
             $scope.testPromise = testDeferred.promise;
             $scope.$digest();
-            
-            testDeferred.resolve();            
+
+            testDeferred.resolve();
             $scope.$digest();
-            
+
             expect($scope.test.key).toBe('new_value');
         });
     });
 });
-

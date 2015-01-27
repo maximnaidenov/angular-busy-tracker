@@ -1,3 +1,7 @@
+node_modules
+bower_components
+npm-debug.log
+
 lib-cov
 *.seed
 *.log
@@ -9,10 +13,7 @@ lib-cov
 pids
 logs
 results
-npm-debug.log
-node_modules
 .DS_Store
 temp
 _SpecRunner.html
 .grunt
-bower_components
