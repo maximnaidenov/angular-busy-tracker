@@ -1,9 +1,6 @@
 {
   "name": "angular-busy-tracker",
   "version": "1.0.0",
-  "main": [
-    "dist/angular-busy-tracker.js"
-  ],
   "dependencies": {
     "angular": "~1.3"
   },

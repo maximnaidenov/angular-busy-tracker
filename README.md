@@ -1,7 +1,11 @@
 #angular-busy-tracker
-Show flexible busy indicator on any element while a promise is pending. Inspired by [angular-busy](https://github.com/cgross/angular-busy)
+Show flexible busy indicator on any element while a promise is pending. Inspired by [angular-busy](https://github.com/cgross/angular-busy) and [angular-promise-tracker](https://github.com/ajoslin/angular-promise-tracker).
 
 ##Features
+* Flexible templates, easily accommodate overlay and in-line busy indicators.
+* All visual content comes from templates, no hardcoded DOM manipulations.
+* Generic and consistent interface simplifies extensions.
+* Tracked promise is simply passed to directive, no need for string ids.
 
 ##Installation
 
@@ -20,15 +24,15 @@ angular.module('yourApp', ['mnBusy']);
 ```
 
 ##Usage
-The bundled templates use *glyphicon-refresh* glyph from [Glyphicon](http://glyphicons.com) Halflings set that is bundled with [Bootstrap](http://getbootstrap.com/) so you need to add it:
+The bundled templates use **glyphicon-refresh** glyph from [Glyphicon](http://glyphicons.com) Halflings set that comes with [Bootstrap](http://getbootstrap.com/) so add it:
 ```html
 <link rel="stylesheet" href="bootstrap.css">
 ```
 
-###Show an overlay spinner during content loading
-Add loading template css:
+###Show an overlay spinner
+Add overlay template css:
 ```html
-<link rel="stylesheet" href="loading.css">
+<link rel="stylesheet" href="overlay.css">
 ```
 Configure the busy tracker:
 ```javascript
@@ -37,22 +41,22 @@ angular.module('yourApp')
     delay: 200,
     minDuration: 500
 })
-.value('busyDefaultsLoading',{
-    templateUrl:'loading.html'
+.value('busyDefaultsOverlay',{
+    templateUrl:'overlay.html'
 });
 ```
-Place the busy tracker directive to enclose the content:
+Place the content inside the busy tracker directive:
 ```html
 <div busy-tracker="loadingPromises"
-     busy-config="Loading">
+     busy-config="Overlay">
     ...your content goes here...
 </div>
 ```
 
-###Show a spinner in a button during content saving
-Add loading template css:
+###Show a spinner in a button
+Add button template css:
 ```html
-<link rel="stylesheet" href="saving-button.css">
+<link rel="stylesheet" href="button.css">
 ```
 Configure the busy tracker:
 ```javascript
@@ -60,22 +64,24 @@ Configure the busy tracker:
     delay: 200,
     minDuration: 500
 })
-.value('busyDefaultsSavingButton',{
+.value('busyDefaultsButton',{
     message: 'Saving...',
-    templateUrl:'saving-button.html'
+    templateUrl:'button.html'
 });
 ```
 Place the busy tracker directive as attribute on the button:
 ```html
 <button ng-click="save()"
         busy-tracker="savingPromises"
-        busy-config="SavingButton">
+        busy-config="Button"
+        busy-param-message="Saving">
 </button>
 ```
-##[Further Examples ](http://maximnaidenov.github.io/angular-busy-tracker/)
+##[More Examples and Docs ](http://maximnaidenov.github.io/angular-busy-tracker/)
 
 ##Change log
-[Releases](https://github.com/maximnaidenov/angular-busy-tracker/blob/master/CHANGELOG.md)
+**1.0.0** - 10/02/2015
+* initial release
 
 ##License
 [MIT](https://github.com/maximnaidenov/angular-busy-tracker/blob/master/LICENSE)
