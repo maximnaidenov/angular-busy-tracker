@@ -1,0 +1,7 @@
+<div class="busy-overlay-container">
+    <div ng-if="$tracker.isBusy()">
+        <span class="glyphicon glyphicon-refresh glyphicon-spin busy-overlay-sign"></span>
+        <div class="busy-overlay-backdrop"></div>
+    </div>
+    <div ng-transclude></div>
+</div>

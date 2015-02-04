@@ -1,0 +1,9 @@
+<div>
+    <div ng-if="$tracker.isBusy()">
+        <span class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+        {{$params.message}}
+    </div>
+    <div ng-if="!$tracker.isBusy()">
+        <div ng-transclude></div>
+    </div>
+</div>

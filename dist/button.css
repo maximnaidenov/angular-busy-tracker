@@ -1,29 +1,3 @@
-.busy-overlay-container {
-  position: relative;
-  z-index: 1;
-}
-
-.busy-overlay-container .busy-overlay-sign{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 1.5em;
-  z-index: 3;
-}
-
-.busy-overlay-container .busy-overlay-backdrop {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-
-  background-color: white;
-  opacity: .7;
-
-  z-index: 2;
-}
-
 .glyphicon-spin {
   -webkit-animation: spin 1000ms infinite linear;
   animation: spin 1000ms infinite linear;
