@@ -6,32 +6,32 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
 
-  jshint: {
-    main: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      src: 'src/busy.js'
-    }
-  },
-   copy: {
+    jshint: {
+      main: {
+        options: {
+          jshintrc: '.jshintrc'
+        },
+        src: 'src/busy.js'
+      }
+    },
+    copy: {
       main: {
         files: [
-          {expand: true, cwd: 'src/', src: ['*'], dest: 'dist/'}
+        {expand: true, cwd: 'src/', src: ['*'], dest: 'dist/'}
         ]
       }
     },
     uglify: {
       main: {
         files: [
-          {src: 'dist/busy.js',dest: 'dist/busy.min.js'}
+        {src: 'dist/busy.js',dest: 'dist/busy.min.js'}
         ]
       }
     },
     cssmin: {
       main: {
         files: [
-          {expand: true,cwd: 'dist',src: ['*.css', '!*.min.css'],dest: 'dist',ext: '.min.css'}
+        {expand: true,cwd: 'dist',src: ['*.css', '!*.min.css'],dest: 'dist',ext: '.min.css'}
         ]
       }
     },

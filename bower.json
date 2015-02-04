@@ -1,10 +1,33 @@
 {
   "name": "angular-busy-tracker",
+  "description": "Flexible busy tracker for angular",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/maximnaidenov/angulat-busy-tracker.git"
+  },
+  "main": [
+    "dist/busy.js",
+    "dist/button.html",
+    "dist/button.css",
+    "dist/overlay.html",
+    "dist/overlay.css"
+  ],
   "dependencies": {
     "angular": "~1.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.3"
-  }
+  },
+  "ignore": [
+    "src",
+    "test",
+    ".editorconfig",
+    ".gitignore",
+    ".jshintrc",
+    "gruntfile.js",
+    "karma.conf.js",
+    "package.json",
+  ],
+  "license": "MIT"
 }
