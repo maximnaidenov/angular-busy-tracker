@@ -1,10 +1,10 @@
 {
   "name": "angular-busy-tracker",
   "description": "Flexible busy tracker for angular",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/maximnaidenov/angulat-busy-tracker.git"
+    "url": "git://github.com/maximnaidenov/angular-busy-tracker.git"
   },
   "main": [
     "dist/busy.js",
