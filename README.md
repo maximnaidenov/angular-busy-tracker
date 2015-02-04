@@ -79,6 +79,8 @@ Place the busy tracker directive as attribute on the button:
 ```
 ##[More Examples and Docs ](http://maximnaidenov.github.io/angular-busy-tracker/)
 
+[Codepen Collection](http://codepen.io/collection/DKpPMZ/)
+
 ##Change log
 **1.0.0** - 10/02/2015
 * initial release
