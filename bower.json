@@ -27,7 +27,7 @@
     ".jshintrc",
     "gruntfile.js",
     "karma.conf.js",
-    "package.json",
+    "package.json"
   ],
   "license": "MIT"
 }
