@@ -105,7 +105,7 @@ describe('Module mnBusy', function() {
 
             var element = $compile(
                 '<div busy-tracker="testPromise" \n\
-                    busy-config="DelayDuration"></div>')($scope);
+                    busy-config="delayDuration"></div>')($scope);
 
             var testDeferred = $q.defer();
             $scope.testPromise = testDeferred.promise;
@@ -143,7 +143,7 @@ describe('Module mnBusy', function() {
 
             var element = $compile(
                 '<div busy-tracker="testPromise" \n\
-                    busy-config="Params" \n\
+                    busy-config="params" \n\
                     busy-param-message="test_message"></div>')($scope);
 
             $scope.$digest();

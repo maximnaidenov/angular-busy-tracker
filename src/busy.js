@@ -1,7 +1,5 @@
-angular.module('mnBusy',[]);
-
-angular.module('mnBusy').
-factory('busyTrackerFactory',['$timeout','$q',
+angular.module('mnBusy',[])
+.factory('busyTrackerFactory',['$timeout','$q',
   function($timeout,$q){
     return function(){
 
@@ -68,8 +66,8 @@ factory('busyTrackerFactory',['$timeout','$q',
         return tracker;
       };
     }
-  ]).
-directive('busyTracker',['$injector','busyTrackerFactory',
+  ])
+.directive('busyTracker',['$injector','busyTrackerFactory',
   function($injector,busyTrackerFactory){
 
     var buildConfig = function(attrs){
@@ -80,22 +78,23 @@ directive('busyTracker',['$injector','busyTrackerFactory',
       // add global defaults
       var busyDefaultsName = 'busyDefaults';
       if ($injector.has(busyDefaultsName)){
-        angular.extend(config,
-          $injector.get(busyDefaultsName));
+        angular.extend(config,$injector.get(busyDefaultsName));
       }
 
       // add instance configs
-      var busyConfigName = 'busyConfig';
-      if (attrs[busyConfigName] &&
-        $injector.has(busyDefaultsName+attrs[busyConfigName])){
-          angular.extend(config,
-            $injector.get(busyDefaultsName+attrs[busyConfigName]));
+      var busyConfigAttr = attrs['busyConfig'];
+      if (busyConfigAttr){
+        var busyConfigValueName = busyDefaultsName+
+          busyConfigAttr.charAt(0).toUpperCase()+busyConfigAttr.slice(1);
+        if($injector.has(busyConfigValueName)){
+          angular.extend(config,$injector.get(busyConfigValueName));
+        }
       }
 
       // add ready expression
-      var busyReadyName = 'busyReady';
-      if (attrs[busyReadyName]){
-        config.onReadyExp = attrs[busyReadyName];
+      var busyReadyAttr = attrs['busyReady'];
+      if (busyReadyAttr){
+        config.onReadyExp = busyReadyAttr;
       }
 
       return config;
@@ -158,4 +157,14 @@ directive('busyTracker',['$injector','busyTrackerFactory',
       }
     };
   }
-]);
+])
+.value('busyDefaults',{
+    delay: 200,
+    minDuration: 500
+})
+.value('busyDefaultsButton',{
+    templateUrl:'mnBusy/button.html'
+})
+.value('busyDefaultsOverlay',{
+    templateUrl:'mnBusy/overlay.html'
+});
