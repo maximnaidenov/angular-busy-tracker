@@ -84,7 +84,8 @@ angular.module('mnBusy',[])
       // add instance configs
       var busyConfigAttr = attrs['busyConfig'];
       if (busyConfigAttr){
-        var busyConfigValueName = busyDefaultsName+busyConfigAttr.charAt(0).toUpperCase();
+        var busyConfigValueName = busyDefaultsName+
+          busyConfigAttr.charAt(0).toUpperCase()+busyConfigAttr.slice(1);
         if($injector.has(busyConfigValueName)){
           angular.extend(config,$injector.get(busyConfigValueName));
         }
