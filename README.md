@@ -44,7 +44,7 @@ Place the content inside the busy tracker directive.
 [codepin](http://codepen.io/maximnaidenov/pen/azLWww)
 
 ###Show a spinner in a button 
-Place the busy tracker directive as attribute on the button. Template could access any parameter provided as attribute **busy-param-<name>** over the **$params** object. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-param-message** attribute.
+Place the busy tracker directive as attribute on the button. Template could access any parameter provided as attribute **busy-param-\<name\>** over the **$params** object. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-param-message** attribute.
 ```html
 <button ng-click="save()"
         busy-tracker="savingPromises"
@@ -55,7 +55,7 @@ Place the busy tracker directive as attribute on the button. Template could acce
 [codepin](http://codepen.io/maximnaidenov/pen/MYEaJO)
 
 ###Change the delay and min duration
-Parameters are configurable by redefining the **busyDefault** value object.
+Options are provided by redefining the **busyDefault** value object.
 ```javascript
 angular.module('yourApp')
 .value('busyDefaults',{
@@ -63,7 +63,7 @@ angular.module('yourApp')
     minDuration: 400
 });
 ```
-Every configuration has a value object with name **busyDefault<config>** that could override paramaters.
+Every configuration has a value object with name **busyDefault\<Name\>** that could override default options.
 ```javascript
 angular.module('yourApp')
 .value('busyDefaultsOverlay',{
@@ -72,7 +72,7 @@ angular.module('yourApp')
 ```
 
 ###Custom template - overlay spinner with spin.js
-Template url is also a paramater in value object. So you could provide custom template and reference it from a new value object.
+Template url is also an option in value object. So you could provide custom template and reference it from a new value object.
 The spinjs example below uses [angular-spinner](https://github.com/urish/angular-spinner) to enclose [spin.js](https://github.com/fgnass/spin.js) so add them.
 ```html
 <script src="spin.js" type="text/javascript"></script> 
@@ -98,7 +98,7 @@ angular.module('yourApp')
      options: {lines: 9, radius: 11, width:5, length: 9}
 });
 ```
-And simply request the new configuration in busy-config attribute
+And simply request the new configuration in busy-config attribute.
 ```html
 <button ng-click="save()"
         busy-tracker="savingPromises"
@@ -108,7 +108,7 @@ And simply request the new configuration in busy-config attribute
 [Live](http://codepen.io/maximnaidenov/pen/QwqgLE)
 
 ###Disable the button
-Tracker state is available on **$tracker** object. So the button could be disabled while the promise is pending.
+Tracker state is available on **$tracker** object. So the button could be disabled while the promise is pending by binding its ng-disabled attribute to **tracker.isBusy()**
 ```html
 <button type="button" class="btn btn-default" ng-click="save()" 
                     busy-tracker="promise"
