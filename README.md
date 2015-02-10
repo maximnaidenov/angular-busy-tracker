@@ -41,7 +41,7 @@ Place the content inside the busy tracker directive.
     ...your content goes here...
 </div>
 ```
-[codepin](http://codepen.io/maximnaidenov/pen/azLWww)
+[Live](http://codepen.io/maximnaidenov/pen/azLWww)
 
 ###Show a spinner in a button 
 Place the busy tracker directive as attribute on the button. Template could access any parameter provided as attribute **busy-param-\<name\>** over the **$params** object. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-param-message** attribute.
@@ -52,7 +52,7 @@ Place the busy tracker directive as attribute on the button. Template could acce
         busy-param-message="Saving...">
 </button>
 ```
-[codepin](http://codepen.io/maximnaidenov/pen/MYEaJO)
+[Live](http://codepen.io/maximnaidenov/pen/MYEaJO)
 
 ###Change the delay and min duration
 Options are provided by redefining the **busyDefault** value object.
