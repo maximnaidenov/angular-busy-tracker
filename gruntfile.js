@@ -58,19 +58,28 @@ module.exports = function (grunt) {
       }
     },
     karma: {
-      options: {
-        configFile: 'karma.conf.js'
-      },
-      unit: {
-        singleRun: true
-      },
-      debug: {
-        singleRun: false
+      main: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        browsers: ['Chrome']
       }
     }
   });
 
+  // provide --autoWatch to stop karma from closing the browser => debug the test
+  var autoWatch = grunt.option('autoWatch') || false;
+  grunt.config('karma.main.singleRun',!autoWatch);
+
+  // provide --browser parameter to specify browser name
+  var browser = grunt.option('browser') || 'Chrome';
+  browser = browser.toLowerCase();
+  if (browser==='phantom' || browser==='phantomjs'){
+    browser='PhantomJS';
+  }else{
+    browser='Chrome';
+  }
+  grunt.config('karma.main.browsers',[browser]);
+
   grunt.registerTask('build',['jshint','ngtemplates','concat','clean','uglify','cssmin']);
-  grunt.registerTask('test', ['karma:unit']);
-  grunt.registerTask('test-debug', ['karma:debug']);
+  grunt.registerTask('test', ['karma']);
 };

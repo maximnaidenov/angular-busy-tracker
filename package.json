@@ -18,12 +18,13 @@
     "grunt-karma": "~0.10",
     "karma": "~0.12",
     "karma-jasmine": "~0.2",
-    "karma-chrome-launcher": "~0.1"
+    "karma-chrome-launcher": "~0.1",
+    "karma-phantomjs-launcher": "~0.1"
   },
   "scripts": {
     "postinstall": "bower install",
 
-    "test": "grunt test -v"
+    "test": "grunt test"
   },
   "license": "MIT"
 }
