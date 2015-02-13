@@ -1,4 +1,4 @@
-#angular-busy-tracker
+#angular-busy-tracker [![Build Status](https://travis-ci.org/maximnaidenov/angular-busy-tracker.svg?branch=master)](https://travis-ci.org/maximnaidenov/angular-busy-tracker)
 Show flexible busy indicator on any element while a promise is pending. Inspired by [angular-busy](https://github.com/cgross/angular-busy) and [angular-promise-tracker](https://github.com/ajoslin/angular-promise-tracker).
 
 ##Features
