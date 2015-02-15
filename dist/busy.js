@@ -57,16 +57,16 @@ angular.module('mnBusy',[])
         return tracker.delayPromise === null &&(
           tracker.durationPromise !== null ||
           tracker.processingPromise !== null);
-        };
-
-        tracker.isActive = function(){
-          return tracker.processingPromise !== null;
-        };
-
-        return tracker;
       };
-    }
-  ])
+
+      tracker.isActive = function(){
+        return tracker.processingPromise !== null;
+      };
+
+      return tracker;
+    };
+  }
+])
 .directive('busyTracker',['$injector','busyTrackerFactory',
   function($injector,busyTrackerFactory){
 
@@ -123,8 +123,7 @@ angular.module('mnBusy',[])
       },
       link: function(scope,element,attrs) {
 
-        // expose the tracker,config and params for template
-        // attrs are
+        // expose the tracker,config and params in template
         scope.$tracker = busyTrackerFactory();
         scope.$config = buildConfig(attrs);
         scope.$params = buildParams(attrs);
