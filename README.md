@@ -45,7 +45,7 @@ Place the content inside the busy tracker directive.
 [Live Demo at codepen.io](http://codepen.io/maximnaidenov/pen/azLWww)
 
 ###Spinner inside a button
-Place the busy tracker directive as attribute on the button. Template could access any parameter from  the object provided in the attribute **busy-params**. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-params** object.
+Place the busy tracker directive as attribute on the button. **BREAKING from v2.0.0** Template could access any parameter from  the object provided in the attribute **busy-params**. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-params** object.
 ```html
 <button ng-click="save()"
         busy-tracker="savingPromises"
@@ -148,8 +148,8 @@ Tracker state is available on **$tracker** object. So the button could be disabl
 [Live Demo at codepen.io](http://codepen.io/maximnaidenov/pen/ZYXKRB)
 
 ###Ready expression
-If a **busy-ready** attribute is defined, its value will be evaluated as angular expression once the tracked promise is resolved. This expression will be evaluated in directive scope so use **$parent** to access the parent scope when setting primitive values.
-From 2.0: busy-ready expression is evaluated in the directive scope
+If a **busy-ready** attribute is defined, its value will be evaluated as angular expression once the tracked promise is resolved. 
+**BREAKING from 2.0.0**: busy-ready expression is evaluated in the directive scope so no need for $parent.
 ```html
 <button type="button" class="btn btn-default" ng-click="save()"
                     busy-tracker="promise"
@@ -188,7 +188,7 @@ $scope.save = function(){
 * Fixed some edge-case handling issues discovered by the new extensive unit test suite for tracker factory
 * **BREAKING** Busy-ready expression is evaluated in the context of the directive
 * **BREAKING** Params is now an object that is interpolated and watched
-* **BREAKING** In templates, config and params are available on $tracker 
+* **BREAKING** In custom templates, config and params are available on $tracker 
 
 **1.1.0** - 8/02/2015
 * Bundled templates are preloded in template cache
