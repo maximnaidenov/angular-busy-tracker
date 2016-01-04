@@ -34,7 +34,7 @@ angular.module('yourApp', ['mnBusy']);
 
 ##Usage
 
-###Overlay spinner 
+###Overlay spinner
 Place the content inside the busy tracker directive.
 ```html
 <div busy-tracker="loadingPromises"
@@ -44,13 +44,13 @@ Place the content inside the busy tracker directive.
 ```
 [Live Demo at codepen.io](http://codepen.io/maximnaidenov/pen/azLWww)
 
-###Spinner inside a button 
-Place the busy tracker directive as attribute on the button. Template could access any parameter provided as attribute **busy-param-\<name\>** over the **$params** object. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-param-message** attribute.
+###Spinner inside a button
+Place the busy tracker directive as attribute on the button. Template could access any parameter from  the object provided in the attribute **busy-params**. So to provided the button text that is shown next to the spinner in the default button template simply set it to **busy-params** object.
 ```html
 <button ng-click="save()"
         busy-tracker="savingPromises"
         busy-config="button"
-        busy-param-message="Saving...">
+        busy-params="{message:'Saving...'}">
 </button>
 ```
 [Live Demo at codepen.io](http://codepen.io/maximnaidenov/pen/MYEaJO)
@@ -104,15 +104,15 @@ And use it as usual.
 Template url is also an option in value object. So we can provide custom template and reference it from a new value object.
 The spinjs example below uses [angular-spinner](https://github.com/urish/angular-spinner) to enclose [spin.js](https://github.com/fgnass/spin.js) so add them.
 ```html
-<script src="spin.js" type="text/javascript"></script> 
-<script src="angular-spinner.js" type="text/javascript"></script> 
+<script src="spin.js" type="text/javascript"></script>
+<script src="angular-spinner.js" type="text/javascript"></script>
 ```
-For best performance preload the template in angular **$templateCache**. Configurations from the value objects are available on **$config** object
+For best performance preload the template in angular **$templateCache**. Configurations from the value objects are available on **$tracker.config** object
 ```html
 <script type="text/ng-template" id="spinjs.html">
  <div class="busy-overlay-container">
    <div ng-if="$tracker.isBusy()">
-     <span class="busy-overlay-sign" us-spinner="$config.options"></span>
+     <span class="busy-overlay-sign" us-spinner="$tracker.config.options"></span>
      <div class="busy-overlay-backdrop"></div>
    </div>
    <div ng-transclude></div>
@@ -139,22 +139,23 @@ And simply request the new configuration in busy-config attribute.
 ###Disable the button
 Tracker state is available on **$tracker** object. So the button could be disabled while the promise is pending by binding its ng-disabled attribute to **tracker.isBusy()**
 ```html
-<button type="button" class="btn btn-default" ng-click="save()" 
+<button type="button" class="btn btn-default" ng-click="save()"
                     busy-tracker="promise"
                     busy-config="button"
-                    busy-param-message="Saving..."
-                    ng-disabled="$tracker.isBusy()">Save</button> 
+                    busy-params="{message:'Saving...'}"
+                    ng-disabled="$tracker.isBusy()">Save</button>
 ```
 [Live Demo at codepen.io](http://codepen.io/maximnaidenov/pen/ZYXKRB)
 
 ###Ready expression
 If a **busy-ready** attribute is defined, its value will be evaluated as angular expression once the tracked promise is resolved. This expression will be evaluated in directive scope so use **$parent** to access the parent scope when setting primitive values.
+From 2.0: busy-ready expression is evaluated in the directive scope
 ```html
-<button type="button" class="btn btn-default" ng-click="save()" 
+<button type="button" class="btn btn-default" ng-click="save()"
                     busy-tracker="promise"
                     busy-config="Button"
-                    busy-param-message="Saving..."
-                    busy-ready="$parent.showReady=true">Save</button>
+                    busy-params="{message:'Saving...'}"
+                    busy-ready="showReady=true">Save</button>
 ```
 [Live Demo at codepen.io](http://codepen.io/maximnaidenov/pen/ZYXKXO)
 
@@ -183,6 +184,12 @@ $scope.save = function(){
 ```
 
 ##Change log
+**2.0.0** - 3/01/2016
+* Fixed some edge-case handling issues discovered by the new extensive unit test suite for tracker factory
+* *BREAKING* Busy-ready expression is evaluated in the context of the directive
+* *BREAKING* Params is now an object that is interpolated and watched
+* *BREAKING* In templates, config and params are available on $tracker 
+
 **1.1.0** - 8/02/2015
 * Bundled templates are preloded in template cache
 * One css for all bundled templates
