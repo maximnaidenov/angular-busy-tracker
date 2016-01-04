@@ -186,9 +186,9 @@ $scope.save = function(){
 ##Change log
 **2.0.0** - 3/01/2016
 * Fixed some edge-case handling issues discovered by the new extensive unit test suite for tracker factory
-* *BREAKING* Busy-ready expression is evaluated in the context of the directive
-* *BREAKING* Params is now an object that is interpolated and watched
-* *BREAKING* In templates, config and params are available on $tracker 
+* **BREAKING** Busy-ready expression is evaluated in the context of the directive
+* **BREAKING** Params is now an object that is interpolated and watched
+* **BREAKING** In templates, config and params are available on $tracker 
 
 **1.1.0** - 8/02/2015
 * Bundled templates are preloded in template cache
