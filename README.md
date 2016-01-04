@@ -149,7 +149,7 @@ Tracker state is available on **$tracker** object. So the button could be disabl
 
 ###Ready expression
 If a **busy-ready** attribute is defined, its value will be evaluated as angular expression once the tracked promise is resolved. 
-**BREAKING from 2.0.0**: busy-ready expression is evaluated in the directive scope so no need for $parent.
+**BREAKING from v2.0.0**: busy-ready expression is evaluated in the directive scope so no need for $parent.
 ```html
 <button type="button" class="btn btn-default" ng-click="save()"
                     busy-tracker="promise"
